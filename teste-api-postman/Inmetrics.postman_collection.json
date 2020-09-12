@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "cb1188f5-7a60-4016-b2e8-cf5ce1393a71",
+		"name": "Inmetrics",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar Todos os Usuários",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ec542b8-1162-4e8e-bd2d-1fb23c41f931",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "automacao",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "inmetrics",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://inm-api-test.herokuapp.com/empregado/list_all",
+					"protocol": "https",
+					"host": [
+						"inm-api-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"empregado",
+						"list_all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36db5671-491e-43b9-bf19-679ee9b85f08",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([202]);",
+							"});",
+							"var responseData = JSON.parse(responseBody)",
+							"pm.environment.set(\"empregadoId\", responseData.empregadoId);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "automacao",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "inmetrics",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"admissao\": \"11/09/2020\",\r\n  \"cargo\": \"Analista de Testes Pleno\",\r\n  \"comissao\": \"500,00\",\r\n  \"cpf\": \"272.324.778-30\",\r\n  \"departamentoId\": 22,\r\n  \"nome\": \"Evandro Brandão dos Santos\",\r\n  \"salario\": \"7.000,00\",\r\n  \"sexo\": \"m\",\r\n  \"tipoContratacao\": \"pj\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://inm-api-test.herokuapp.com/empregado/cadastrar",
+					"protocol": "https",
+					"host": [
+						"inm-api-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"empregado",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Usuário Cadastrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fed2d0b3-75f6-4020-b01f-2cb0cf2cbc15",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "automacao",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "inmetrics",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://inm-api-test.herokuapp.com/empregado/list/{{empregadoId}}",
+					"protocol": "https",
+					"host": [
+						"inm-api-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"empregado",
+						"list",
+						"{{empregadoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7eb8837-0b50-4374-97c6-f491f77c6726",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "automacao",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "inmetrics",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"admissao\": \"20/09/2020\",\r\n  \"cargo\": \"Analista de Testes Senior\",\r\n  \"comissao\": \"500,00\",\r\n  \"cpf\": \"457.324.721-30\",\r\n  \"departamentoId\": 22,\r\n  \"nome\": \"Evandro Brandão\",\r\n  \"salario\": \"6.000,00\",\r\n  \"sexo\": \"m\",\r\n  \"tipoContratacao\": \"clt\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://inm-api-test.herokuapp.com/empregado/alterar/{{empregadoId}}\n",
+					"protocol": "https",
+					"host": [
+						"inm-api-test",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"empregado",
+						"alterar",
+						"{{empregadoId}}\n"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
